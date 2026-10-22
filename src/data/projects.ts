@@ -63,6 +63,7 @@ export const projects: Project[] = [
     status: "IN DEVELOPMENT",
     architecture:
       "CAMERA → FACE DETECTION → RECOGNITION → IDENTITY MATCH → ATTENDANCE EVENT → DATA / REPORTS",
+    caseStudy: "/projects/visual-attendance",
   },
 
   /* 02 — Probability of Default / Credit Scoring
@@ -92,6 +93,7 @@ export const projects: Project[] = [
       { label: "ROC-AUC", value: "0.9487" },
       { label: "Recall", value: "0.6531" },
     ],
+    caseStudy: "/projects/credit-scoring",
   },
 
   /* 03 — Neural Machine Translation
@@ -116,6 +118,7 @@ export const projects: Project[] = [
     featured: false,
     variant: "standard",
     status: "TRAINING / EVALUATION IN PROGRESS",
+    caseStudy: "/projects/neural-translation",
   },
 ];
 
