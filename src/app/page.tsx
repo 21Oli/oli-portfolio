@@ -1,11 +1,14 @@
 import Hero from "@/components/hero/Hero";
 import CapabilitySignal from "@/components/capabilities/CapabilitySignal";
+import ProjectSection from "@/components/projects/ProjectSection";
 
 /* ==========================================================================
    HOMEPAGE
+   Phase 1: Foundation
+   Phase 2: Navbar + Footer (in layout.tsx)
    Phase 3: Hero + Capability Signal
-   Additional homepage sections (projects, skills, experience, etc.)
-   will be implemented in Phase 4+ per IMPLEMENTATION_PLAN.md.
+   Phase 4: Selected Projects
+   Additional sections (Skills, Experience, About, etc.) — Phase 6+
    ========================================================================== */
 
 export default function Home() {
@@ -13,6 +16,7 @@ export default function Home() {
     <>
       <Hero />
       <CapabilitySignal />
+      <ProjectSection />
     </>
   );
 }
