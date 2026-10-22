@@ -1,0 +1,355 @@
+/* ==========================================================================
+   GLOBALS.CSS — Portfolio Design System
+   Oli Bakala — AI / ML / Data Engineering Portfolio
+   CSS custom properties (design tokens) + global reset + base styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DARK THEME TOKENS (primary / default)
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="dark"] {
+  /* Backgrounds */
+  --color-bg:        #0A0E12;
+  --color-surface:   #11171D;
+  --color-surface-2: #151C22;
+  --color-surface-3: #1B232A;
+
+  /* Borders */
+  --color-border:        #273139;
+  --color-border-subtle: #1E282F;
+
+  /* Text */
+  --color-text-primary:   #F1F3F2;
+  --color-text-secondary: #B0B8BD;
+  --color-text-muted:     #96A1A9;
+
+  /* Accent (teal) */
+  --color-accent:        #61DED0;
+  --color-accent-strong: #42CFC0;
+  --color-accent-soft:   rgba(97, 222, 208, 0.12);
+
+  /* Scheme hint for browser chrome */
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   2. LIGHT THEME TOKENS
+   -------------------------------------------------------------------------- */
+[data-theme="light"] {
+  /* Backgrounds */
+  --color-bg:        #F4F5F2;
+  --color-surface:   #FFFFFF;
+  --color-surface-2: #ECEFEB;
+  --color-surface-3: #E3E7E3;
+
+  /* Borders */
+  --color-border:        #D6DDD8;
+  --color-border-subtle: #E2E6E3;
+
+  /* Text */
+  --color-text-primary:   #101518;
+  --color-text-secondary: #465258;
+  --color-text-muted:     #68747A;
+
+  /* Accent (teal — adjusted for light backgrounds) */
+  --color-accent:        #087F78;
+  --color-accent-strong: #056B65;
+  --color-accent-soft:   rgba(8, 127, 120, 0.09);
+
+  color-scheme: light;
+}
+
+/* System preference — applied when no [data-theme] attribute is set */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --color-bg:        #F4F5F2;
+    --color-surface:   #FFFFFF;
+    --color-surface-2: #ECEFEB;
+    --color-surface-3: #E3E7E3;
+
+    --color-border:        #D6DDD8;
+    --color-border-subtle: #E2E6E3;
+
+    --color-text-primary:   #101518;
+    --color-text-secondary: #465258;
+    --color-text-muted:     #68747A;
+
+    --color-accent:        #087F78;
+    --color-accent-strong: #056B65;
+    --color-accent-soft:   rgba(8, 127, 120, 0.09);
+
+    color-scheme: light;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Font families — Geist loaded via next/font/google in layout.tsx */
+  --font-sans:  var(--font-geist-sans, 'Inter', system-ui, sans-serif);
+  --font-mono:  var(--font-geist-mono, 'JetBrains Mono', monospace);
+
+  /* Desktop type scale */
+  --text-hero:        4.5rem;   /* 72px */
+  --text-section:     3rem;     /* 48px */
+  --text-project:     2.5rem;   /* 40px */
+  --text-card:        1.5rem;   /* 24px */
+  --text-large-body:  1.1875rem;/* 19px */
+  --text-body:        1rem;     /* 16px */
+  --text-meta:        0.75rem;  /* 12px */
+
+  /* Line heights */
+  --leading-hero:    0.98;
+  --leading-section: 1.05;
+  --leading-card:    1.2;
+  --leading-large:   1.55;
+  --leading-body:    1.6;
+  --leading-meta:    1.3;
+
+  /* Font weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+
+  /* Letter spacing */
+  --tracking-meta: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Content widths */
+  --content-max:     1280px;
+
+  /* Horizontal padding */
+  --px-desktop: 2rem;    /* 32px */
+  --px-tablet:  1.75rem; /* 28px */
+  --px-mobile:  1.25rem; /* 20px */
+
+  /* Section vertical spacing */
+  --section-gap-desktop: 7.5rem; /* ~120px */
+  --section-gap-mobile:  5rem;   /* ~80px */
+
+  /* Grid */
+  --grid-columns-desktop: 12;
+  --grid-columns-tablet:  8;
+  --grid-gap-desktop:     1.5rem;  /* 24px */
+  --grid-gap-tablet:      1.25rem; /* 20px */
+
+  /* Navigation heights */
+  --nav-height-desktop: 76px;
+  --nav-height-mobile:  68px;
+
+  /* Border radii */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   5. MOTION TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Durations */
+  --duration-micro:     150ms;
+  --duration-fast:      220ms;
+  --duration-section:   550ms;
+  --duration-signature: 700ms;
+  --duration-hero:      1000ms;
+
+  /* Easing */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:      cubic-bezier(0, 0, 0.2, 1);
+  --ease-in:       cubic-bezier(0.4, 0, 1, 1);
+
+  /* Default transition shorthand */
+  --transition-fast: var(--duration-fast) var(--ease-standard);
+}
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVE BREAKPOINTS
+   (used as reference — implemented via @media queries in component CSS)
+
+   640px  — sm
+   768px  — md
+   1024px — lg
+   1280px — xl
+   1536px — 2xl
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   7. GLOBAL RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Disable smooth scroll for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   8. TYPOGRAPHIC BASE
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-section);
+  color: var(--color-text-primary);
+}
+
+p {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-body);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+strong {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* --------------------------------------------------------------------------
+   9. INTERACTIVE BASE
+   -------------------------------------------------------------------------- */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   10. LAYOUT UTILITIES
+   -------------------------------------------------------------------------- */
+
+/* Container — centers content at max width with responsive padding */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--px-desktop);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: var(--px-tablet);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--px-mobile);
+  }
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. FOCUS VISIBLE GLOBAL FALLBACK
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Remove default outline for mouse users, keep for keyboard */
+:focus:not(:focus-visible) {
+  outline: none;
+}
