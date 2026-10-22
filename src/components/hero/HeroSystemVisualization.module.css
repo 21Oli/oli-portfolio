@@ -1,0 +1,169 @@
+/* HERO SYSTEM VISUALIZATION
+   DATA → FEATURES → MODEL → API → APPLICATION
+   Vertical flow with signal animation. */
+
+.visualization {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+}
+
+/* --- Flow container --- */
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+/* --- Node row: dot + label side by side --- */
+.nodeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+/* --- Connecting line between nodes --- */
+.connector {
+  position: absolute;
+  left: calc(1.5rem + 7px);
+  top: 100%;
+  width: 1px;
+  height: 2.5rem;
+  background: var(--color-border);
+}
+
+/* --- Node circle --- */
+.node {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nodeDot {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-3);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  /* Node glow animation — lights up when signal passes */
+  animation: nodeGlow 5s ease-in-out infinite;
+}
+
+/* --- Node label --- */
+.nodeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+  /* Label color animation — lights up when signal passes */
+  animation: labelGlow 5s ease-in-out infinite;
+}
+
+/* --- Signal dot — travels down the pipeline --- */
+.signal {
+  position: absolute;
+  left: calc(1.5rem + 7px);
+  top: 1.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent), 0 0 16px var(--color-accent-soft);
+  transform: translateX(-50%);
+  opacity: 0;
+  /* Signal travels through 5 nodes over 5 seconds, then resets */
+  animation: signalTravel 5s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+/* Signal travels through the 5 nodes */
+@keyframes signalTravel {
+  0%   { opacity: 0; top: 1.5rem; }
+  4%   { opacity: 1; }
+  16%  { top: 1.5rem; }
+  20%  { opacity: 0.3; }
+  24%  { opacity: 1; top: calc(1.5rem + 2.5rem + 14px); }
+  36%  { top: calc(1.5rem + 2.5rem + 14px); }
+  40%  { opacity: 0.3; }
+  44%  { opacity: 1; top: calc(1.5rem + 5rem + 28px); }
+  56%  { top: calc(1.5rem + 5rem + 28px); }
+  60%  { opacity: 0.3; }
+  64%  { opacity: 1; top: calc(1.5rem + 7.5rem + 42px); }
+  76%  { top: calc(1.5rem + 7.5rem + 42px); }
+  80%  { opacity: 0.3; }
+  84%  { opacity: 1; top: calc(1.5rem + 10rem + 56px); }
+  94%  { top: calc(1.5rem + 10rem + 56px); opacity: 1; }
+  100% { opacity: 0; top: calc(1.5rem + 10rem + 56px); }
+}
+
+/* Node glows when signal passes */
+@keyframes nodeGlow {
+  0%, 100% {
+    border-color: var(--color-border);
+    box-shadow: none;
+  }
+  4% {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 6px var(--color-accent-soft);
+  }
+  20% {
+    border-color: var(--color-border);
+    box-shadow: none;
+  }
+}
+
+/* Label glows when signal passes */
+@keyframes labelGlow {
+  0%, 100% {
+    color: var(--color-text-muted);
+  }
+  4% {
+    color: var(--color-accent);
+  }
+  20% {
+    color: var(--color-text-muted);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .signal {
+    animation: none;
+    display: none;
+  }
+
+  .nodeDot {
+    animation: none;
+    border-color: var(--color-border);
+    box-shadow: none;
+  }
+
+  .nodeLabel {
+    animation: none;
+    color: var(--color-text-muted);
+  }
+}

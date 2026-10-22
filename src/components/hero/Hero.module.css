@@ -1,0 +1,235 @@
+/* HERO — homepage hero section
+   7/5 grid, entrance animation, approved typography. */
+
+.hero {
+  width: 100%;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-inline: var(--px-desktop);
+}
+
+/* --- Grid: 7 cols text + 5 cols visual --- */
+.grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* --- Text column --- */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- Eyebrow --- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 550ms 0ms var(--ease-out) forwards;
+}
+
+/* --- Headline --- */
+.headline {
+  font-family: var(--font-sans);
+  font-size: var(--text-hero);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-hero);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 16ch;
+  opacity: 0;
+  animation: fadeInUp 550ms 100ms var(--ease-out) forwards;
+}
+
+/* --- Supporting text --- */
+.supporting {
+  font-size: var(--text-large-body);
+  line-height: var(--leading-large);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 48ch;
+  opacity: 0;
+  animation: fadeInUp 550ms 220ms var(--ease-out) forwards;
+}
+
+/* --- CTAs --- */
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 550ms 360ms var(--ease-out) forwards;
+}
+
+.ctaPrimary {
+  font-size: 0.8125rem;
+}
+
+/* --- Current status --- */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadeInUp 550ms 520ms var(--ease-out) forwards;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  flex-shrink: 0;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.statusText {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+}
+
+/* --- Visual column --- */
+.visualCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeInUp 700ms 600ms var(--ease-out) forwards;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 var(--color-accent-soft);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 4px transparent;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: var(--px-tablet);
+  }
+
+  .grid {
+    gap: 2.5rem;
+  }
+
+  .headline {
+    font-size: 3.25rem; /* 52px */
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .container {
+    padding-inline: var(--px-mobile);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .textCol {
+    order: 1;
+  }
+
+  .visualCol {
+    order: 2;
+  }
+
+  .headline {
+    font-size: 2.875rem; /* 46px */
+  }
+
+  .supporting {
+    font-size: var(--text-body);
+  }
+}
+
+@media (max-width: 640px) {
+  .headline {
+    font-size: 2.5rem; /* 40px */
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ctaPrimary {
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .headline,
+  .supporting,
+  .ctas,
+  .status,
+  .visualCol {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
+  .statusDot {
+    animation: none;
+  }
+}

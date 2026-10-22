@@ -1,0 +1,139 @@
+/* CAPABILITY SIGNAL — technology strip
+   64-72px height, top + bottom border, animated marquee on desktop,
+   horizontal scroll on mobile. */
+
+.strip {
+  width: 100%;
+  height: 68px;
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: var(--color-bg);
+}
+
+/* --- Track: holds the two duplicated lists for seamless loop --- */
+.track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  /* Animated marquee — 30 second cycle (within 25-40s spec range) */
+  animation: marquee 30s linear infinite;
+}
+
+/* Pause on hover */
+.strip:hover .track {
+  animation-play-state: paused;
+}
+
+/* --- List --- */
+.list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+/* --- Item --- */
+.item {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  padding: 0 1.75rem;
+  transition: color var(--transition-fast);
+  /* Separator dot between items */
+  position: relative;
+}
+
+.item:not(:last-child)::after {
+  content: "·";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-border);
+  font-size: 0.875rem;
+}
+
+/* Hover: accent color on individual items */
+.item:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   MARQUEE ANIMATION
+   ========================================================================== */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move by exactly one list width (50% of the track) */
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================================================
+   MOBILE: horizontal scroll instead of animation
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .strip {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .track {
+    animation: none;
+  }
+
+  .strip:hover .track {
+    animation-play-state: running;
+  }
+
+  /* Only render the first list on mobile (no duplication needed) */
+  .list:nth-child(2) {
+    display: none;
+  }
+
+  .item {
+    padding: 0 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+
+  .strip {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .list:nth-child(2) {
+    display: none;
+  }
+}
