@@ -1,0 +1,51 @@
+/* THEME SELECTOR — segmented control for System / Light / Dark */
+
+.selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  background: var(--color-surface-2);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3125rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+  cursor: pointer;
+  min-height: 2rem;
+  line-height: 1;
+}
+
+.option:hover {
+  color: var(--color-text-secondary);
+}
+
+.option:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.option.active {
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option {
+    transition: none;
+  }
+}

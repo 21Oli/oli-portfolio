@@ -1,0 +1,144 @@
+/* FOOTER — minimal footer styles */
+
+.footer {
+  width: 100%;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-bottom: 2rem;
+  margin-top: auto;
+}
+
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-inline: var(--px-desktop);
+}
+
+/* --- Top section: identity + links --- */
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.name {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.06em;
+  color: var(--color-text-primary);
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+/* --- Footer navigation --- */
+.nav {
+  flex-shrink: 0;
+}
+
+.navList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  font-size: 0.8125rem;
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--color-accent);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Divider --- */
+.divider {
+  height: 1px;
+  background: var(--color-border-subtle);
+  width: 100%;
+}
+
+/* --- Bottom section: copyright + built with --- */
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.builtWith {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .container {
+    padding-inline: var(--px-tablet);
+  }
+
+  .top {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .navList {
+    gap: 0.75rem 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--px-mobile);
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .navLink {
+    transition: none;
+  }
+}
