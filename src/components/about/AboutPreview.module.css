@@ -1,0 +1,109 @@
+/* ABOUT PREVIEW — concise biographical section */
+
+.section {
+  width: 100%;
+  padding-top: var(--section-gap-desktop);
+  padding-bottom: var(--section-gap-desktop);
+  background: var(--color-bg);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-inline: var(--px-desktop);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Sits in the left column on desktop */
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-meta);
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.heading {
+  font-family: var(--font-sans);
+  font-size: var(--text-section);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-section);
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BODY — right column on desktop
+   ========================================================================== */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.paragraph {
+  font-size: var(--text-large-body);
+  line-height: var(--leading-large);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: var(--px-tablet);
+    gap: 3rem;
+  }
+
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .paragraph {
+    font-size: var(--text-body);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--section-gap-mobile);
+    padding-bottom: var(--section-gap-mobile);
+  }
+
+  /* Stack to single column on mobile */
+  .container {
+    grid-template-columns: 1fr;
+    padding-inline: var(--px-mobile);
+    gap: 2rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .heading {
+    font-size: 1.75rem;
+  }
+}
