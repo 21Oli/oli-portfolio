@@ -5,6 +5,8 @@ import EngineeringApproach from "@/components/engineering/EngineeringApproach";
 import SkillsSection from "@/components/skills/SkillsSection";
 import ExperienceTimeline from "@/components/experience/ExperienceTimeline";
 import AboutPreview from "@/components/about/AboutPreview";
+import CurrentlyBuilding from "@/components/current/CurrentlyBuilding";
+import LearningHubPreview from "@/components/learning/LearningHubPreview";
 
 /* ==========================================================================
    HOMEPAGE — section order per PORTFOLIO_MASTER_SPEC.md §5
@@ -15,7 +17,8 @@ import AboutPreview from "@/components/about/AboutPreview";
    Phase 5: Case study routes (separate pages)
    Phase 6: Engineering Approach + Skills
    Phase 7: Experience + About
-   Phase 8+: Currently Building, Learning Hub, Contact
+   Phase 8: Currently Building + Learning Hub
+   Phase 9+: Contact, metadata, résumé
    ========================================================================== */
 
 export default function Home() {
@@ -28,6 +31,8 @@ export default function Home() {
       <SkillsSection />
       <ExperienceTimeline />
       <AboutPreview />
+      <CurrentlyBuilding />
+      <LearningHubPreview />
     </>
   );
 }
