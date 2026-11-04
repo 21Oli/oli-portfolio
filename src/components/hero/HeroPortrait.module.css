@@ -1,51 +1,115 @@
-/* HERO PORTRAIT — placeholder styles
-   4:5 aspect ratio, surface background, system visualization integrated. */
+/* HERO PORTRAIT — real photograph with system visualization overlay
+   4:5 aspect ratio (1122×1402px source), editorial crop.
+   HOMEPAGE_SPEC.md §16: portrait + visualization as one composition. */
 
 .portrait {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   margin: 0 auto;
 }
+
+/* ==========================================================================
+   PORTRAIT CONTAINER — 4:5 aspect ratio
+   ========================================================================== */
 
 .portraitArea {
   position: relative;
   width: 100%;
-  /* 4:5 aspect ratio */
+  /* Enforce 4:5 ratio to prevent layout shift before image loads */
   aspect-ratio: 4 / 5;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* Subtle border consistent with the editorial design language */
+  box-shadow: 0 0 0 1px var(--color-border-subtle);
   /* Entrance animation */
   opacity: 0;
   animation: fadeInUp 700ms 600ms var(--ease-out) forwards;
 }
 
-/* --- System visualization container --- */
-.systemContainer {
+/* ==========================================================================
+   PORTRAIT IMAGE
+   ========================================================================== */
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Favour the upper portion — standard editorial portrait positioning */
+  object-position: center top;
+  /* Subtle monochrome treatment per spec: editorial, understated */
+  filter: grayscale(15%) contrast(1.05);
+  display: block;
+}
+
+/* ==========================================================================
+   SYSTEM VISUALIZATION OVERLAY
+   Sits in the lower-right quadrant of the portrait area on desktop,
+   creating the "one composition" effect per HOMEPAGE_SPEC.md §16.
+   Hidden on small mobile where screen space is tight.
+   ========================================================================== */
+
+.systemOverlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* Semi-transparent surface panel */
+  background: rgba(17, 23, 29, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-border-subtle);
+  border-left: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg) 0 0 0;
+  padding: 1rem 1.125rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  width: 100%;
-  padding: 1rem;
+  gap: 0.625rem;
+  /* Delay until after portrait loads */
+  animation: fadeInUp 700ms 720ms var(--ease-out) forwards;
+  opacity: 0;
+}
+
+/* Light theme: lighter panel */
+:global([data-theme="light"]) .systemOverlay {
+  background: rgba(244, 245, 242, 0.88);
+}
+
+@media (prefers-color-scheme: light) {
+  :global(:root:not([data-theme="dark"])) .systemOverlay {
+    background: rgba(244, 245, 242, 0.88);
+  }
 }
 
 .systemLabel {
   font-family: var(--font-mono);
-  font-size: 0.5625rem;
+  font-size: 0.5rem;
   font-weight: var(--weight-medium);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-muted);
-  opacity: 0.7;
 }
 
-/* --- Entrance animation --- */
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .portrait {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* On very small screens, hide the overlay to avoid crowding the portrait */
+  .systemOverlay {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ENTRANCE ANIMATION
+   ========================================================================== */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -57,9 +121,13 @@
   }
 }
 
-/* --- Reduced motion --- */
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
 @media (prefers-reduced-motion: reduce) {
-  .portraitArea {
+  .portraitArea,
+  .systemOverlay {
     opacity: 1;
     animation: none;
     transform: none;

@@ -1,30 +1,36 @@
 /* ==========================================================================
    HERO PORTRAIT
-   PLACEHOLDER — No approved portrait image is available yet.
-   This is a deliberate, documented visual placeholder consistent with the
-   "AI Engineering Lab × Editorial Minimalism" design direction.
-
-   The placeholder:
-   - Uses the approved 4:5 aspect ratio from HOMEPAGE_SPEC.md §16
-   - Has a surface background with subtle border
-   - Contains the system visualization as the primary visual element
-   - Does NOT fake a photo or use a stock image
-
-   When a real portrait is available, replace the placeholder content
-   with a next/image component and the approved image.
+   Professional portrait photograph integrated from public/images/portrait.png
+   (1122×1402px, 4:5 aspect ratio, PNG, RGB).
+   HOMEPAGE_SPEC.md §16:
+   - 4:5 aspect ratio
+   - Editorial crop, monochrome or near-monochrome, subtle contrast
+   - Portrait and system visualization as one unified composition
    ========================================================================== */
 
+import Image from "next/image";
 import HeroSystemVisualization from "./HeroSystemVisualization";
 import styles from "./HeroPortrait.module.css";
 
 export default function HeroPortrait() {
   return (
     <div className={styles.portrait} role="group" aria-label="Portrait and system visualization">
-      {/* Portrait placeholder area (4:5) */}
       <div className={styles.portraitArea}>
-        {/* The system visualization sits inside the portrait composition
-            to create one unified visual per HOMEPAGE_SPEC.md §16 */}
-        <div className={styles.systemContainer}>
+        {/* Professional portrait — priority load (above the fold) */}
+        <Image
+          src="/images/portrait.png"
+          alt="Oli Bakala — Software Engineering graduate focused on AI, machine learning, and data-driven systems"
+          width={1122}
+          height={1402}
+          priority
+          quality={85}
+          sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 420px"
+          className={styles.image}
+        />
+
+        {/* System visualization overlay — sits below the portrait on mobile,
+            overlays as a subtle panel on desktop per §16 composition requirement */}
+        <div className={styles.systemOverlay} aria-hidden="true">
           <span className={styles.systemLabel}>SYSTEM FLOW</span>
           <HeroSystemVisualization />
         </div>

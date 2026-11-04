@@ -85,6 +85,10 @@
   font-size: 0.8125rem;
 }
 
+.ctaSecondary {
+  font-size: 0.8125rem;
+}
+
 /* --- Current status --- */
 .status {
   display: flex;

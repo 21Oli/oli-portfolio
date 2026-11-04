@@ -2,30 +2,32 @@ import type { NextConfig } from "next";
 
 /* ==========================================================================
    NEXT.JS CONFIGURATION
+
+   Environment variables used:
+   - NEXT_PUBLIC_SITE_URL: Set to the deployed URL (e.g. https://your-app.vercel.app)
+     after the first Vercel deployment. Used by layout.tsx for metadataBase.
+     No environment variables are required for the build to succeed.
+
+   Content Security Policy (CSP): NOT yet implemented.
+   The application renders 30+ inline Next.js RSC payload scripts per page.
+   These change with every build, making hash-based CSP infeasible with
+   static generation. A proper CSP requires either:
+   - A Next.js middleware that generates a nonce per request (requires SSR/Edge)
+   - Vercel's CSP configuration with nonce injection
+   This is a post-deployment hardening task.
    ========================================================================== */
 
 const securityHeaders = [
-  /* Prevents MIME-type sniffing */
   { key: "X-Content-Type-Options", value: "nosniff" },
-  /* Controls referrer information in requests */
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  /* Prevents the site from being embedded in a frame (clickjacking protection).
-     Note: X-Frame-Options is largely superseded by CSP frame-ancestors in modern
-     browsers, but remains useful for legacy browser support. */
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
-  /* X-XSS-Protection: removed — deprecated header, disabled in modern browsers,
-     and can introduce security regressions in some configurations. */
-  /* DNS prefetch control */
   { key: "X-DNS-Prefetch-Control", value: "on" },
-  /* Permissions policy — disable unnecessary browser APIs */
   {
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
   },
-  /* Content-Security-Policy: NOT yet configured — requires testing compatibility
-     with the existing inline no-FOUC theme script in layout.tsx and Next.js
-     internal inline scripts. Implement as a Phase 12 hardening task after
-     deployment, using nonces or hashes for the inline scripts. */
+  /* Strict-Transport-Security: only effective over HTTPS — Vercel handles this
+     via its own HSTS configuration on production deployments. */
 ];
 
 const nextConfig: NextConfig = {

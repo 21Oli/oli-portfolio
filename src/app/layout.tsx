@@ -21,10 +21,16 @@ const geistMono = Geist_Mono({
 
 /* --------------------------------------------------------------------------
    METADATA — portfolio homepage metadata per HOMEPAGE_SPEC.md §49
-   metadataBase: omitted — production domain not yet confirmed.
-   OG images: omitted until a portrait or portfolio preview image is available.
+   metadataBase: reads from NEXT_PUBLIC_SITE_URL environment variable.
+   - Set NEXT_PUBLIC_SITE_URL to the real Vercel URL after first deployment.
+   - Until set, metadataBase is omitted (no localhost, no fabricated domain).
+   - OG images: omitted until a dedicated 1200×630 image is available.
+     The portrait (portrait.png) is 1122×1402 — not the right OG dimensions.
    -------------------------------------------------------------------------- */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
 export const metadata: Metadata = {
+  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   title: {
     default: "Oli Bakala — AI / ML / Data Engineering",
     template: "%s — Oli Bakala",

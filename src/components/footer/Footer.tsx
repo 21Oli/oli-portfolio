@@ -36,7 +36,7 @@ export default function Footer() {
               </ul>
             </nav>
 
-            {/* External links — verified GitHub and LinkedIn */}
+            {/* External links + résumé — verified GitHub, LinkedIn, and résumé PDF */}
             {externalLinks.length > 0 && (
               <nav className={styles.nav} aria-label="External links">
                 <ul className={styles.navList}>
@@ -53,6 +53,16 @@ export default function Footer() {
                       </a>
                     </li>
                   ))}
+                  <li>
+                    <a
+                      href="/resume/resume.pdf"
+                      className={styles.navLink}
+                      download="Oli-Bakala-Resume.pdf"
+                      aria-label="Download résumé PDF"
+                    >
+                      RÉSUMÉ ↓
+                    </a>
+                  </li>
                 </ul>
               </nav>
             )}

@@ -3,7 +3,7 @@
    Exact approved copy from HOMEPAGE_SPEC.md §15.
    7/5 desktop grid: text (7 cols) + visual (5 cols).
    Entrance animation with staggered delays per HOMEPAGE_SPEC.md §19.
-   Résumé CTA omitted — no résumé file available (per §15: do not fabricate).
+   Résumé CTA now connected to the verified PDF at /resume/resume.pdf.
    ========================================================================== */
 
 import HeroPortrait from "./HeroPortrait";
@@ -38,8 +38,14 @@ export default function Hero() {
               <a href="#projects" className={`btn btn-primary ${styles.ctaPrimary}`}>
                 VIEW SELECTED WORK →
               </a>
-              {/* Résumé CTA omitted — no résumé file available.
-                  Do not fabricate a download link per HOMEPAGE_SPEC.md §15. */}
+              <a
+                href="/resume/resume.pdf"
+                className={`btn btn-secondary ${styles.ctaSecondary}`}
+                download="Oli-Bakala-Resume.pdf"
+                aria-label="Download résumé PDF"
+              >
+                DOWNLOAD RÉSUMÉ ↓
+              </a>
             </div>
 
             {/* Current status */}
