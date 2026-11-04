@@ -22,18 +22,35 @@ const geistMono = Geist_Mono({
 
 /* --------------------------------------------------------------------------
    METADATA — portfolio homepage metadata per HOMEPAGE_SPEC.md §49
+   metadataBase: omitted — production domain not yet confirmed.
+   Do not set a localhost or invented URL as metadataBase.
+   Add when the production domain is confirmed:
+     metadataBase: new URL("https://your-domain.com"),
+   OG images: omitted until a portrait or portfolio preview image is available.
    -------------------------------------------------------------------------- */
 export const metadata: Metadata = {
-  title: "Oli Bakala — AI / ML / Data Engineering",
+  title: {
+    default: "Oli Bakala — AI / ML / Data Engineering",
+    template: "%s — Oli Bakala",
+  },
   description:
     "Oli Bakala is a Software Engineering graduate focused on machine learning, artificial intelligence, data-driven systems, and production-oriented AI applications.",
   authors: [{ name: "Oli Bakala" }],
   creator: "Oli Bakala",
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: "Oli Bakala — AI / ML / Data Engineering",
     description:
       "Software Engineering graduate focused on machine learning, AI applications, data-driven systems, and production-oriented software engineering.",
     type: "website",
+    /* url and images omitted — production domain and OG image not yet confirmed.
+       Add when deploying:
+       url: "https://your-domain.com",
+       images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+    */
   },
 };
 

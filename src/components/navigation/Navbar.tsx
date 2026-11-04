@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { navItems, logoConfig } from "@/data/navigation";
+import { navItems, externalNavItems, logoConfig } from "@/data/navigation";
 import ThemeSelector from "./ThemeSelector";
 import MobileMenu from "./MobileMenu";
 import styles from "./Navbar.module.css";
@@ -116,8 +116,20 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Right side: theme selector + mobile toggle */}
+          {/* Right side: external links + theme selector + mobile toggle */}
           <div className={styles.actions}>
+            {externalNavItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={styles.externalLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${item.label} (opens in new tab)`}
+              >
+                {item.label}
+              </a>
+            ))}
             <ThemeSelector />
             <button
               type="button"

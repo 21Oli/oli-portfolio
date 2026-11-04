@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { navItems, logoConfig } from "@/data/navigation";
+import { navItems, externalNavItems, logoConfig } from "@/data/navigation";
 import ThemeSelector from "./ThemeSelector";
 import styles from "./MobileMenu.module.css";
 
@@ -113,6 +113,26 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </li>
           ))}
         </ul>
+
+        {/* External links — GitHub, LinkedIn */}
+        {externalNavItems.length > 0 && (
+          <ul className={styles.navList}>
+            {externalNavItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className={styles.navLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.label} (opens in new tab)`}
+                  onClick={onClose}
+                >
+                  {item.label} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* Theme selector */}
         <div className={styles.themeSection}>

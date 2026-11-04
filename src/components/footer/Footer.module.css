@@ -50,6 +50,15 @@
   flex-shrink: 0;
 }
 
+/* Wrapper for nav + external link groups side by side */
+.linkGroups {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
 .navList {
   display: flex;
   flex-wrap: wrap;

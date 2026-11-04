@@ -21,17 +21,24 @@ export const navItems: NavItem[] = [
   { label: "Contact", href: "#contact", type: "anchor" },
 ];
 
-/* External links — omitted until verified URLs are available.
-   When ready, add entries like:
-   { label: "GitHub", href: "https://github.com/...", type: "external" }
-*/
-export const externalNavItems: NavItem[] = [];
+/* External links — verified GitHub and LinkedIn provided by project owner */
+export const externalNavItems: NavItem[] = [
+  {
+    label: "GitHub",
+    href: "https://github.com/21Oli",
+    type: "external",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/oli-bakala/",
+    type: "external",
+  },
+];
 
 /* Footer link groups */
 export const footerNavGroups: NavItem[][] = [
   navItems,
-  /* External/social links — omitted until verified URLs are available */
-  [],
+  externalNavItems,
 ];
 
 /* Logo / identity */

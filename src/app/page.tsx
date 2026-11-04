@@ -7,18 +7,11 @@ import ExperienceTimeline from "@/components/experience/ExperienceTimeline";
 import AboutPreview from "@/components/about/AboutPreview";
 import CurrentlyBuilding from "@/components/current/CurrentlyBuilding";
 import LearningHubPreview from "@/components/learning/LearningHubPreview";
+import ContactSection from "@/components/contact/ContactSection";
 
 /* ==========================================================================
    HOMEPAGE — section order per PORTFOLIO_MASTER_SPEC.md §5
-   Phase 1: Foundation
-   Phase 2: Navbar + Footer (in layout.tsx)
-   Phase 3: Hero + Capability Signal
-   Phase 4: Selected Projects
-   Phase 5: Case study routes (separate pages)
-   Phase 6: Engineering Approach + Skills
-   Phase 7: Experience + About
-   Phase 8: Currently Building + Learning Hub
-   Phase 9+: Contact, metadata, résumé
+   Phase 1–9 complete.
    ========================================================================== */
 
 export default function Home() {
@@ -33,6 +26,7 @@ export default function Home() {
       <AboutPreview />
       <CurrentlyBuilding />
       <LearningHubPreview />
+      <ContactSection />
     </>
   );
 }
