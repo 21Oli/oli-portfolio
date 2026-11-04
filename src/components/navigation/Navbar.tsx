@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { navItems, externalNavItems, logoConfig } from "@/data/navigation";
 import ThemeSelector from "./ThemeSelector";
 import MobileMenu from "./MobileMenu";
@@ -21,6 +21,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   /* Track scroll position for sticky styling */
   useEffect(() => {
@@ -73,6 +74,15 @@ export default function Navbar() {
     };
     document.addEventListener("keydown", onKeydown);
     return () => document.removeEventListener("keydown", onKeydown);
+  }, [menuOpen]);
+
+  /* Restore focus to the menu trigger when the menu closes */
+  const prevMenuOpen = useRef(false);
+  useEffect(() => {
+    if (prevMenuOpen.current && !menuOpen) {
+      menuButtonRef.current?.focus();
+    }
+    prevMenuOpen.current = menuOpen;
   }, [menuOpen]);
 
   return (
@@ -130,11 +140,14 @@ export default function Navbar() {
                 {item.label}
               </a>
             ))}
-            <ThemeSelector />
+            <div className={styles.themeWrapper}>
+              <ThemeSelector />
+            </div>
             <button
+              ref={menuButtonRef}
               type="button"
               className={styles.menuButton}
-              aria-label="Open menu"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               onClick={() => setMenuOpen(true)}

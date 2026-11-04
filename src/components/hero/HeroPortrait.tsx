@@ -19,7 +19,7 @@ import styles from "./HeroPortrait.module.css";
 
 export default function HeroPortrait() {
   return (
-    <div className={styles.portrait} aria-label="Portrait and system visualization">
+    <div className={styles.portrait} role="group" aria-label="Portrait and system visualization">
       {/* Portrait placeholder area (4:5) */}
       <div className={styles.portraitArea}>
         {/* The system visualization sits inside the portrait composition

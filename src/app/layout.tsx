@@ -96,8 +96,12 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        {/* Skip-to-content link for keyboard users */}
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <Navbar />
-        <main style={{ flex: 1 }}>{children}</main>
+        <main id="main-content" style={{ flex: 1 }}>{children}</main>
         <Footer />
       </body>
     </html>

@@ -47,15 +47,15 @@
   --color-border:        #D6DDD8;
   --color-border-subtle: #E2E6E3;
 
-  /* Text */
+  /* Text — muted darkened from #68747A to #57616A for WCAG AA contrast */
   --color-text-primary:   #101518;
   --color-text-secondary: #465258;
-  --color-text-muted:     #68747A;
+  --color-text-muted:     #57616A;
 
-  /* Accent (teal — adjusted for light backgrounds) */
-  --color-accent:        #087F78;
-  --color-accent-strong: #056B65;
-  --color-accent-soft:   rgba(8, 127, 120, 0.09);
+  /* Accent — darkened from #087F78/#056B65 for WCAG AA contrast on light backgrounds */
+  --color-accent:        #066B64;
+  --color-accent-strong: #045A54;
+  --color-accent-soft:   rgba(6, 107, 100, 0.09);
 
   color-scheme: light;
 }
@@ -73,11 +73,11 @@
 
     --color-text-primary:   #101518;
     --color-text-secondary: #465258;
-    --color-text-muted:     #68747A;
+    --color-text-muted:     #57616A;
 
-    --color-accent:        #087F78;
-    --color-accent-strong: #056B65;
-    --color-accent-soft:   rgba(8, 127, 120, 0.09);
+    --color-accent:        #066B64;
+    --color-accent-strong: #045A54;
+    --color-accent-soft:   rgba(6, 107, 100, 0.09);
 
     color-scheme: light;
   }
@@ -339,6 +339,31 @@ video {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Skip-to-content link — visually hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 1000;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 var(--radius-sm) 0;
+  text-decoration: none;
+  transition: top var(--duration-fast) var(--ease-standard);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 0;
 }
 
 /* --------------------------------------------------------------------------

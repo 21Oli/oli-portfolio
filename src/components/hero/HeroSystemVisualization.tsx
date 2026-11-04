@@ -18,7 +18,7 @@ const nodes = [
 
 export default function HeroSystemVisualization() {
   return (
-    <div className={styles.visualization} aria-label="System pipeline: data to application">
+    <div className={styles.visualization} role="group" aria-label="System pipeline: data to application">
       <div className={styles.flow}>
         {nodes.map((node, index) => (
           <div key={node.label} className={styles.nodeRow}>

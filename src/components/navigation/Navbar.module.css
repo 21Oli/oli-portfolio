@@ -133,6 +133,17 @@
   flex-shrink: 0;
 }
 
+/* --- Theme selector wrapper (hidden on mobile — already in MobileMenu) --- */
+.themeWrapper {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .themeWrapper {
+    display: block;
+  }
+}
+
 /* --- External links (GitHub, LinkedIn) in desktop actions --- */
 .externalLink {
   font-family: var(--font-mono);

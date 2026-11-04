@@ -228,8 +228,7 @@
   flex-direction: column;
   gap: 1.25rem;
   align-self: start;
-  /* Align with card vertically */
-  margin-top: calc(var(--text-section) * var(--leading-section) + 0.5rem + 2rem + 0.125rem);
+  /* No magic margin-top — aligns to top of grid row via align-items: start */
 }
 
 .learningEyebrow {
@@ -283,10 +282,6 @@
 
   .heading {
     font-size: 2.5rem;
-  }
-
-  .secondaryPanel {
-    margin-top: 0;
   }
 }
 

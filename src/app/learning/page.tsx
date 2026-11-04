@@ -31,7 +31,7 @@ export default function LearningPage() {
 
       <div className={styles.grid}>
         {learningArticles.map((article) => (
-          <LearningCard key={article.id} article={article} />
+          <LearningCard key={article.id} article={article} headingLevel="h2" />
         ))}
       </div>
     </div>

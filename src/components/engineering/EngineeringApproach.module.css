@@ -148,14 +148,7 @@
   }
 }
 
-/* Tablet: reduce step description to save space */
-@media (max-width: 900px) {
-  .stepDescription {
-    display: none;
-  }
-}
-
-/* Mobile: vertical stack — description visible again */
+/* Mobile: vertical stack — description visible */
 @media (max-width: 768px) {
   .section {
     padding-top: var(--section-gap-mobile);

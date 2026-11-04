@@ -31,25 +31,25 @@ export default function ContactSection() {
         </div>
 
         {/* Contact links — only verified destinations rendered */}
-        <div className={styles.links} role="list" aria-label="Contact links">
+        <ul className={styles.links} aria-label="Contact links">
           {contactLinks.map((link) => (
-            <a
-              key={link.type}
-              href={link.href}
-              className={styles.link}
-              role="listitem"
-              aria-label={LINK_LABELS[link.type] ?? link.label}
-              {...(link.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              <span className={styles.linkLabel}>{link.label}</span>
-              <span className={styles.linkArrow} aria-hidden="true">
-                {link.external ? "↗" : "→"}
-              </span>
-            </a>
+            <li key={link.type} className={styles.linkItem}>
+              <a
+                href={link.href}
+                className={styles.link}
+                aria-label={LINK_LABELS[link.type] ?? link.label}
+                {...(link.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                <span className={styles.linkLabel}>{link.label}</span>
+                <span className={styles.linkArrow} aria-hidden="true">
+                  {link.external ? "↗" : "→"}
+                </span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* "OPEN TO AI / ML / DATA OPPORTUNITIES" — spec marks this as
             optional and conditional. Rendered as a status indicator.

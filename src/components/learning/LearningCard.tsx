@@ -9,10 +9,14 @@ import styles from "./LearningCard.module.css";
 
 type Props = {
   article: LearningArticle;
+  /** Heading level: "h2" for listing pages, "h3" for homepage preview (default) */
+  headingLevel?: "h2" | "h3";
 };
 
-export default function LearningCard({ article }: Props) {
+export default function LearningCard({ article, headingLevel = "h3" }: Props) {
   const { title, category, description, date, route, readingTime } = article;
+
+  const HeadingTag = headingLevel as keyof React.JSX.IntrinsicElements;
 
   const formattedDate = new Date(date).toLocaleDateString("en-GB", {
     year: "numeric",
@@ -26,7 +30,7 @@ export default function LearningCard({ article }: Props) {
           <span className={styles.category}>{category}</span>
           <span className={styles.readTime}>{readingTime} min read</span>
         </div>
-        <h3 className={styles.title}>{title}</h3>
+        <HeadingTag className={styles.title}>{title}</HeadingTag>
         <p className={styles.description}>{description}</p>
         <div className={styles.footer}>
           <span className={styles.date}>{formattedDate}</span>

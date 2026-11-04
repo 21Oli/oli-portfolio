@@ -89,15 +89,13 @@ export default function ThemeSelector() {
   return (
     <div
       className={styles.selector}
-      role="radiogroup"
-      aria-label="Color theme"
+      aria-label="Color theme selector"
     >
       {options.map((opt) => (
         <button
           key={opt.value}
           type="button"
-          role="radio"
-          aria-checked={currentChoice === opt.value}
+          aria-pressed={currentChoice === opt.value}
           aria-label={`${opt.label} theme`}
           className={`${styles.option} ${
             currentChoice === opt.value ? styles.active : ""
