@@ -5,9 +5,15 @@ import LearningCard from "@/components/learning/LearningCard";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Learning Hub — Oli Bakala",
+  title: "Learning Hub",
   description:
     "Insights, tutorials, experiments, and research notes on AI, Machine Learning, and Data from Oli Bakala.",
+  openGraph: {
+    title: "Learning Hub",
+    description:
+      "Insights, tutorials, experiments, and research notes on AI, Machine Learning, and Data from Oli Bakala.",
+    type: "website",
+  },
 };
 
 export default function LearningPage() {

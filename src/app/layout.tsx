@@ -6,7 +6,6 @@ import "./globals.css";
 
 /* --------------------------------------------------------------------------
    FONTS — Geist (primary) + Geist Mono (technical/metadata)
-   CSS variables exposed: --font-geist-sans, --font-geist-mono
    -------------------------------------------------------------------------- */
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +22,6 @@ const geistMono = Geist_Mono({
 /* --------------------------------------------------------------------------
    METADATA — portfolio homepage metadata per HOMEPAGE_SPEC.md §49
    metadataBase: omitted — production domain not yet confirmed.
-   Do not set a localhost or invented URL as metadataBase.
-   Add when the production domain is confirmed:
-     metadataBase: new URL("https://your-domain.com"),
    OG images: omitted until a portrait or portfolio preview image is available.
    -------------------------------------------------------------------------- */
 export const metadata: Metadata = {
@@ -46,11 +42,20 @@ export const metadata: Metadata = {
     description:
       "Software Engineering graduate focused on machine learning, AI applications, data-driven systems, and production-oriented software engineering.",
     type: "website",
+    siteName: "Oli Bakala — AI / ML / Data Engineering",
+    locale: "en_GB",
     /* url and images omitted — production domain and OG image not yet confirmed.
        Add when deploying:
        url: "https://your-domain.com",
        images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
     */
+  },
+  twitter: {
+    card: "summary",
+    title: "Oli Bakala — AI / ML / Data Engineering",
+    description:
+      "Software Engineering graduate focused on machine learning, AI applications, data-driven systems, and production-oriented software engineering.",
+    /* images omitted — no OG image available yet */
   },
 };
 
@@ -62,10 +67,55 @@ export const viewport = {
 };
 
 /* --------------------------------------------------------------------------
+   JSON-LD STRUCTURED DATA — Person + WebSite
+   Only verified information from PORTFOLIO_MASTER_SPEC.md §2.
+   Rules applied:
+   - jobTitle reflects actual current status (graduate/learner), not an aspiration.
+   - sameAs uses canonical LinkedIn URL with www.
+   - datePublished omitted — articles are educational writing, dates unverified.
+   - No production URL — domain not yet confirmed.
+   - JSON is serialized with < and > replaced to prevent any </script> injection risk.
+   -------------------------------------------------------------------------- */
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Oli Bakala",
+  description:
+    "Software Engineering graduate developing expertise in machine learning, AI applications, data-driven systems, and production-oriented software engineering.",
+  /* jobTitle: "AI / ML / Data Engineer" is a career aspiration, not a current held role.
+     Omitted to avoid misrepresentation per PORTFOLIO_MASTER_SPEC.md §2 accuracy rules. */
+  knowsAbout: [
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Data Engineering",
+    "Software Engineering",
+    "Natural Language Processing",
+    "Computer Vision",
+  ],
+  sameAs: [
+    "https://github.com/21Oli",
+    "https://www.linkedin.com/in/oli-bakala/",
+  ],
+  /* url: omitted — production domain not yet confirmed */
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Oli Bakala — AI / ML / Data Engineering",
+  inLanguage: "en",
+  /* url: omitted — production domain not yet confirmed */
+};
+
+/* Escape </script> sequences in JSON to prevent script injection.
+   JSON.stringify produces valid JSON; the replace guards against any
+   edge case where a string value contains "</script>". */
+const structuredData = JSON.stringify([personSchema, websiteSchema])
+  .replace(/</g, "\\u003c")
+  .replace(/>/g, "\\u003e");
+
+/* --------------------------------------------------------------------------
    NO-FOUC THEME SCRIPT
-   Runs synchronously before paint to set [data-theme] from localStorage.
-   If no saved preference, leaves attribute unset — CSS @media handles
-   system preference. Prevents flash of wrong theme on initial render.
    -------------------------------------------------------------------------- */
 const themeScript = `
 (function() {
@@ -94,6 +144,10 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: structuredData }}
+        />
       </head>
       <body>
         {/* Skip-to-content link for keyboard users */}

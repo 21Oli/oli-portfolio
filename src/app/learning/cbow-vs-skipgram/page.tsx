@@ -2,13 +2,35 @@ import type { Metadata } from "next";
 import ArticleTemplate from "@/components/learning/ArticleTemplate";
 
 export const metadata: Metadata = {
-  title: "CBOW vs Skip-gram — Oli Bakala Learning Hub",
+  title: "CBOW vs Skip-gram",
   description:
     "Word2Vec's two training objectives compared — what each optimises, how they differ in practice, and when to use each.",
+  openGraph: {
+    title: "CBOW vs Skip-gram",
+    description:
+      "Word2Vec's two training objectives compared — what each optimises, how they differ in practice, and when to use each.",
+    type: "article",
+    authors: ["Oli Bakala"],
+  },
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "CBOW vs Skip-gram",
+  description:
+    "Word2Vec's two training objectives compared — what each optimises, how they differ in practice, and when to use each.",
+  author: { "@type": "Person", name: "Oli Bakala" },
+  inLanguage: "en",
 };
 
 export default function CbowSkipgramPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c").replace(/>/g, "\\u003e") }}
+      />
     <ArticleTemplate
       title="CBOW vs Skip-gram"
       category="INSIGHTS"
@@ -97,5 +119,6 @@ export default function CbowSkipgramPage() {
         training corpus — they are not explicitly supervised.
       </p>
     </ArticleTemplate>
+    </>
   );
 }

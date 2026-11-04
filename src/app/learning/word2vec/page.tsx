@@ -2,13 +2,35 @@ import type { Metadata } from "next";
 import ArticleTemplate from "@/components/learning/ArticleTemplate";
 
 export const metadata: Metadata = {
-  title: "Word2Vec Explained — Oli Bakala Learning Hub",
+  title: "Word2Vec Explained",
   description:
     "How Word2Vec learns dense vector representations of words from text, why distributional similarity works, and what the embeddings capture.",
+  openGraph: {
+    title: "Word2Vec Explained",
+    description:
+      "How Word2Vec learns dense vector representations of words from text, why distributional similarity works, and what the embeddings capture.",
+    type: "article",
+    authors: ["Oli Bakala"],
+  },
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Word2Vec Explained",
+  description:
+    "How Word2Vec learns dense vector representations of words from text, why distributional similarity works, and what the embeddings capture.",
+  author: { "@type": "Person", name: "Oli Bakala" },
+  inLanguage: "en",
 };
 
 export default function Word2VecPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c").replace(/>/g, "\\u003e") }}
+      />
     <ArticleTemplate
       title="Word2Vec Explained"
       category="INSIGHTS"
@@ -84,5 +106,6 @@ export default function Word2VecPage() {
         representations depending on the surrounding context.
       </p>
     </ArticleTemplate>
+    </>
   );
 }

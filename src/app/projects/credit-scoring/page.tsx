@@ -3,9 +3,15 @@ import CaseStudyTemplate from "@/components/projects/CaseStudyTemplate";
 import { caseStudies } from "@/data/caseStudies";
 
 export const metadata: Metadata = {
-  title: "Probability of Default — Credit Scoring — Oli Bakala",
+  title: "Probability of Default — Credit Scoring",
   description:
     "Binary classification model for credit risk assessment. Case study covering class imbalance, evaluation methodology, and results: F1 0.7805, ROC-AUC 0.9487, Recall 0.6531.",
+  openGraph: {
+    title: "Probability of Default — Credit Scoring",
+    description:
+      "Binary classification model for credit risk assessment. Case study covering class imbalance, evaluation methodology, and results: F1 0.7805, ROC-AUC 0.9487, Recall 0.6531.",
+    type: "article",
+  },
 };
 
 export default function CreditScoringPage() {

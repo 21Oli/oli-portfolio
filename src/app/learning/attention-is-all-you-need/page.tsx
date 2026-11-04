@@ -2,13 +2,35 @@ import type { Metadata } from "next";
 import ArticleTemplate from "@/components/learning/ArticleTemplate";
 
 export const metadata: Metadata = {
-  title: "Understanding Attention — Oli Bakala Learning Hub",
+  title: "Understanding Attention",
   description:
     "A walkthrough of the attention mechanism — how it works, why it was introduced, and why it changed sequence modelling in NLP.",
+  openGraph: {
+    title: "Understanding Attention",
+    description:
+      "A walkthrough of the attention mechanism — how it works, why it was introduced, and why it changed sequence modelling in NLP.",
+    type: "article",
+    authors: ["Oli Bakala"],
+  },
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Understanding Attention",
+  description:
+    "A walkthrough of the attention mechanism — how it works, why it was introduced, and why it changed sequence modelling in NLP.",
+  author: { "@type": "Person", name: "Oli Bakala" },
+  inLanguage: "en",
 };
 
 export default function AttentionArticlePage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c").replace(/>/g, "\\u003e") }}
+      />
     <ArticleTemplate
       title="Understanding Attention"
       category="RESEARCH NOTES"
@@ -112,5 +134,6 @@ export default function AttentionArticlePage() {
         paper&apos;s notation.
       </p>
     </ArticleTemplate>
+    </>
   );
 }

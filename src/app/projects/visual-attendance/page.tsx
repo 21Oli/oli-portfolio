@@ -3,9 +3,15 @@ import CaseStudyTemplate from "@/components/projects/CaseStudyTemplate";
 import { caseStudies } from "@/data/caseStudies";
 
 export const metadata: Metadata = {
-  title: "AI-Powered Visual Attendance System — Oli Bakala",
+  title: "AI-Powered Visual Attendance System",
   description:
     "Production-oriented computer vision system for live employee face recognition and attendance tracking. Case study covering the pipeline, architecture, implementation status, and planned work.",
+  openGraph: {
+    title: "AI-Powered Visual Attendance System",
+    description:
+      "Production-oriented computer vision system for live employee face recognition and attendance tracking. Case study covering the pipeline, architecture, implementation status, and planned work.",
+    type: "article",
+  },
 };
 
 export default function VisualAttendancePage() {

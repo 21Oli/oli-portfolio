@@ -19,15 +19,14 @@ export type ContactLink = {
 };
 
 export const contactLinks: ContactLink[] = [
-  /* Email — omitted until a confirmed address is provided.
-     Uncomment and replace the href when ready:
+   
   {
     type: "email",
     label: "EMAIL",
-    href: "mailto:your-email@example.com",
+    href: "mailto:olibekele50@gmail.com",
     external: false,
   },
-  */
+  
   {
     type: "linkedin",
     label: "LINKEDIN",

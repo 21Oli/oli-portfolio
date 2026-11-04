@@ -2,13 +2,35 @@ import type { Metadata } from "next";
 import ArticleTemplate from "@/components/learning/ArticleTemplate";
 
 export const metadata: Metadata = {
-  title: "Building Time-Series Features — Oli Bakala Learning Hub",
+  title: "Building Time-Series Features",
   description:
     "Practical feature engineering for time-series data: lag features, rolling windows, seasonal decomposition, and common pitfalls.",
+  openGraph: {
+    title: "Building Time-Series Features",
+    description:
+      "Practical feature engineering for time-series data: lag features, rolling windows, seasonal decomposition, and common pitfalls.",
+    type: "article",
+    authors: ["Oli Bakala"],
+  },
+};
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Building Time-Series Features",
+  description:
+    "Practical feature engineering for time-series data: lag features, rolling windows, seasonal decomposition, and common pitfalls.",
+  author: { "@type": "Person", name: "Oli Bakala" },
+  inLanguage: "en",
 };
 
 export default function TimeSeriesFeaturesPage() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c").replace(/>/g, "\\u003e") }}
+      />
     <ArticleTemplate
       title="Building Time-Series Features"
       category="TUTORIALS"
@@ -104,5 +126,6 @@ df["is_weekend"]  = df["day_of_week"].isin([5, 6]).astype(int)`}</code></pre>
         without improving prediction.
       </p>
     </ArticleTemplate>
+    </>
   );
 }
